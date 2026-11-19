@@ -1,0 +1,22 @@
+/*
+ * J-Link script for EK-RA8P1: pulse the external octal flash reset line
+ * (P106 = OSPI_RESET) before J-Link programs the OSPI flash at 0x90000000.
+ * This returns the flash to its power-on 1S-1S-1S (single SPI) state in case
+ * a previous application switched it to octal DDR mode.
+ */
+int HandleBeforeFlashProg(void)
+{
+  JLINK_MEM_WriteU8(0x40400d14, 0x00);       /* PWPR: clear B0WI        */
+  JLINK_MEM_WriteU8(0x40400d14, 0x40);       /* PWPR: set PFSWE         */
+
+  JLINK_MEM_WriteU32(0x40400858, 0x00000005); /* P106 PFS: output high  */
+  JLINK_SYS_Sleep(1);
+  JLINK_MEM_WriteU32(0x40400858, 0x00000004); /* P106 PFS: output low   */
+  JLINK_SYS_Sleep(1);
+  JLINK_MEM_WriteU32(0x40400858, 0x00000005); /* P106 PFS: output high  */
+  JLINK_SYS_Sleep(1);
+
+  JLINK_MEM_WriteU8(0x40400d14, 0x00);       /* PWPR: clear PFSWE       */
+  JLINK_MEM_WriteU8(0x40400d14, 0x80);       /* PWPR: set B0WI (lock)   */
+  return 0;
+}

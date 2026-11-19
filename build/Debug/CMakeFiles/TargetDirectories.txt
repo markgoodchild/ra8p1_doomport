@@ -1,0 +1,5 @@
+C:/data/Work/workspaces_vscode/ra8p1_doom/build/Debug/CMakeFiles/open_rasc_ra8p1_doom.dir
+C:/data/Work/workspaces_vscode/ra8p1_doom/build/Debug/CMakeFiles/ra8p1_doom.elf.dir
+C:/data/Work/workspaces_vscode/ra8p1_doom/build/Debug/CMakeFiles/generate_sbd_ra8p1_doom.dir
+C:/data/Work/workspaces_vscode/ra8p1_doom/build/Debug/CMakeFiles/edit_cache.dir
+C:/data/Work/workspaces_vscode/ra8p1_doom/build/Debug/CMakeFiles/rebuild_cache.dir

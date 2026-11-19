@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"abstractTargets" : [],
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-b5805d5c08fd3d92def4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.4"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "ra8p1_doom",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "generate_sbd_ra8p1_doom::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-generate_sbd_ra8p1_doom-Debug-8c1cde4f4d9dde6a26d8.json",
+					"name" : "generate_sbd_ra8p1_doom",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "open_rasc_ra8p1_doom::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-open_rasc_ra8p1_doom-Debug-c306fc68419f4feea8ac.json",
+					"name" : "open_rasc_ra8p1_doom",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ra8p1_doom.elf::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ra8p1_doom.elf-Debug-5b0e2c58b4a8b493274a.json",
+					"name" : "ra8p1_doom.elf",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/data/Work/workspaces_vscode/ra8p1_doom/build/Debug",
+		"source" : "C:/data/Work/workspaces_vscode/ra8p1_doom"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 11
+	}
+}
