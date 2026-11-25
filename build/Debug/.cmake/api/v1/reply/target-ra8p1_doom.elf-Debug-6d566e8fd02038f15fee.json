@@ -55,7 +55,7 @@
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 118,
+				"line" : 119,
 				"parent" : 2
 			},
 			{
@@ -73,7 +73,7 @@
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 78,
+				"line" : 79,
 				"parent" : 0
 			},
 			{
@@ -103,7 +103,7 @@
 			{
 				"command" : 8,
 				"file" : 1,
-				"line" : 82,
+				"line" : 83,
 				"parent" : 0
 			}
 		]
@@ -237,6 +237,10 @@
 			[
 				{
 					"backtrace" : 8,
+					"define" : "FEATURE_SOUND=1"
+				},
+				{
+					"backtrace" : 8,
 					"define" : "RA8_DOOM=1"
 				},
 				{
@@ -277,6 +281,10 @@
 				{
 					"backtrace" : 10,
 					"path" : "C:/data/Work/workspaces_vscode/ra8p1_doom/ra/fsp/src/r_usb_basic/src/driver/inc"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "C:/data/Work/workspaces_vscode/ra8p1_doom/ra/fsp/src/r_usb_haud/src/inc"
 				},
 				{
 					"backtrace" : 10,
@@ -450,6 +458,10 @@
 			[
 				{
 					"backtrace" : 8,
+					"define" : "FEATURE_SOUND=1"
+				},
+				{
+					"backtrace" : 8,
 					"define" : "RA8_DOOM=1"
 				},
 				{
@@ -490,6 +502,10 @@
 				{
 					"backtrace" : 10,
 					"path" : "C:/data/Work/workspaces_vscode/ra8p1_doom/ra/fsp/src/r_usb_basic/src/driver/inc"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "C:/data/Work/workspaces_vscode/ra8p1_doom/ra/fsp/src/r_usb_haud/src/inc"
 				},
 				{
 					"backtrace" : 10,
@@ -608,7 +624,11 @@
 				77,
 				78,
 				79,
-				80
+				80,
+				81,
+				82,
+				83,
+				84
 			]
 		},
 		{
@@ -734,6 +754,10 @@
 			[
 				{
 					"backtrace" : 8,
+					"define" : "FEATURE_SOUND=1"
+				},
+				{
+					"backtrace" : 8,
 					"define" : "RA8_DOOM=1"
 				},
 				{
@@ -774,6 +798,10 @@
 				{
 					"backtrace" : 10,
 					"path" : "C:/data/Work/workspaces_vscode/ra8p1_doom/ra/fsp/src/r_usb_basic/src/driver/inc"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "C:/data/Work/workspaces_vscode/ra8p1_doom/ra/fsp/src/r_usb_haud/src/inc"
 				},
 				{
 					"backtrace" : 10,
@@ -819,10 +847,6 @@
 			"language" : "C",
 			"sourceIndexes" : 
 			[
-				81,
-				82,
-				83,
-				84,
 				85,
 				86,
 				87,
@@ -895,7 +919,11 @@
 				154,
 				155,
 				156,
-				157
+				157,
+				158,
+				159,
+				160,
+				161
 			]
 		}
 	],
@@ -1246,7 +1274,11 @@
 				154,
 				155,
 				156,
-				157
+				157,
+				158,
+				159,
+				160,
+				161
 			]
 		}
 	],
@@ -1889,6 +1921,26 @@
 				3
 			],
 			"compileGroupIndex" : 1,
+			"path" : "ra/fsp/src/r_usb_haud/r_usb_haud.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"backtraces" : 
+			[
+				3
+			],
+			"compileGroupIndex" : 1,
+			"path" : "ra/fsp/src/r_usb_haud/src/r_usb_haud_driver.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"backtraces" : 
+			[
+				3
+			],
+			"compileGroupIndex" : 1,
 			"path" : "ra/fsp/src/r_usb_hhid/r_usb_hhid.c",
 			"sourceGroupIndex" : 0
 		},
@@ -2019,6 +2071,16 @@
 				3
 			],
 			"compileGroupIndex" : 1,
+			"path" : "src/port/i_sound_ra8.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"backtraces" : 
+			[
+				3
+			],
+			"compileGroupIndex" : 1,
 			"path" : "src/port/i_video_ra8.c",
 			"sourceGroupIndex" : 0
 		},
@@ -2040,6 +2102,16 @@
 			],
 			"compileGroupIndex" : 1,
 			"path" : "src/port/rtt_log.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"backtraces" : 
+			[
+				3
+			],
+			"compileGroupIndex" : 1,
+			"path" : "src/port/usb_audio.c",
 			"sourceGroupIndex" : 0
 		},
 		{

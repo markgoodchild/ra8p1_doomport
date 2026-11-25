@@ -75,7 +75,8 @@ list(TRANSFORM DOOM_ENGINE_SOURCES APPEND .c)
 
 target_sources(${PROJECT_NAME}.elf PRIVATE ${DOOM_ENGINE_SOURCES})
 target_include_directories(${PROJECT_NAME}.elf PRIVATE ${DOOM_ENGINE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src/port)
-target_compile_definitions(${PROJECT_NAME}.elf PRIVATE RA8_DOOM=1)
+# FEATURE_SOUND: sound effects go to USB headphones (src/port/i_sound_ra8.c, usb_audio.c)
+target_compile_definitions(${PROJECT_NAME}.elf PRIVATE RA8_DOOM=1 FEATURE_SOUND=1)
 
 # Third party code: silence warnings, allow GNU extensions and optimise for
 # speed even in Debug builds (the renderer is the hot path).

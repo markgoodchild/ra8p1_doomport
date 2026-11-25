@@ -9,6 +9,7 @@ LLVM toolchain (ATfE 22.1). The engine is [doomgeneric](https://github.com/ozkl/
 |------------|----------------|
 | Display    | 7" 1024x600 parallel RGB panel (RTKLCDPAR1S00001BE) on the Parallel Graphics Expansion Port. GLCDC layer in **CLUT8** mode, so Doom's palette is loaded into the hardware colour table. 320x200 is scaled to 800x600 (4:3) and double-buffered in SDRAM, with page flips on vsync. About 56 fps (panel refresh). |
 | Controller | Sony DualSense (PS5) or DualShock 4 (PS4) on the **USB high-speed port**, using FSP USB Host HID (`r_usb_hhid`). The light bar turns red once the controller is recognised. |
+| Audio      | Sound effects on **USB headphones** (USB-C digital headphones or a USB audio dongle) on the **USB full-speed port**, using FSP USB Host Audio (`r_usb_haud`). Software mixer, 16 channels, resampled to 48 kHz stereo (falls back to 32/24/16 kHz and mono or 24-bit if needed), streamed isochronously. |
 | WAD        | Stored in the external octal flash at `0x90000000` and copied to SDRAM at boot (~1 s). |
 | Memory     | Doom zone 24 MB, WAD copy and RAM file system all in SDRAM; D-cache enabled. |
 | Console    | `printf` output goes to SEGGER RTT channel 0 (use J-Link RTT Viewer). |
@@ -17,7 +18,9 @@ LLVM toolchain (ATfE 22.1). The engine is [doomgeneric](https://github.com/ozkl/
 
 1. **Hardware:** fit the parallel display board on J1 (SW4-6 must be OFF, per the
    EK-RA8P1 user manual), plug the controller into the USB high-speed connector
-   with a USB cable, and connect the debug USB port (J10) to the PC.
+   with a USB cable, plug USB headphones into the USB full-speed connector (the board must
+   be set up to supply VBUS in host mode on that port, see the EK-RA8P1 user manual), and
+   connect the debug USB port (J10) to the PC.
 2. **Program the WAD (one time):** run the VS Code task **"Flash Doom WAD to OSPI"**,
    or `scripts\flash_wad.bat [path\to\iwad]`. This takes about a minute. To use a
    different IWAD (`doom.wad`, `doom2.wad`, up to 16 MB), pass its path; the game type
@@ -60,6 +63,8 @@ src/new_thread0_entry.c boot sequence and main game loop
 src/port/i_video_ra8.c  GLCDC CLUT8 video, palette, scaling, boot/error screen
 src/port/i_input_ra8.c  game pad -> Doom key events, menu repeat, analog axes
 src/port/usb_gamepad.c  USB host task, DualSense / DS4 report parsing, light bar
+src/port/usb_audio.c    USB host audio task (USBFS): format selection, sample rate, isochronous streaming
+src/port/i_sound_ra8.c  Doom sound module: SFX mixer feeding usb_audio.c (music is a silent stub)
 src/port/wad_loader.c   OSPI (1S-1S-1S memory mapped) -> SDRAM IWAD copy
 src/port/ramfs.c        RAM file system behind fopen() (WAD, default.cfg, save games)
 src/port/doom_platform.c  DG_* hooks, SDRAM arena, memory-mapped WAD class, quit/exit
@@ -69,11 +74,18 @@ src/port/rtt_log.c      SEGGER RTT console (stdout/stderr)
 FSP configuration changes (in `configuration.xml`): SDRAM and D-cache enabled; heap 512 KB;
 GLCDC (CLUT8 1024x600, panel timings for the 7" display, pixel clock 48 MHz);
 OSPI_B unit 0 / CS1 with 4-byte addressing and OCTACLK /4; USB Host HID on USB_IP1 (USBHS)
-in full-speed mode (the FSP HHID class does not support Hi-Speed); FreeRTOS dynamic allocation
+in full-speed mode (the FSP HHID class does not support Hi-Speed); USB Host Audio (HAUD) on USB_IP0
+(USBFS, pins P814/P815, VBUS P407, VBUSEN P500) with callback `usb_audio_callback`; USB Multiport
+enabled so each port only registers its own class (otherwise HID grabs headsets with buttons, and
+audio would compete for the DualSense's audio interfaces); FreeRTOS dynamic allocation
 with Heap 4 (64 KB), and a 64 KB stack for the game thread.
 
 Known limitations:
-- **No sound.**
+- **No music**, only sound effects (Doom's MUS music needs an OPL FM synthesiser).
+- Only digital USB audio class headphones work; passive (analog) USB-C headphones don't.
+- `usb_audio.c` works around two FSP 6.5 HAUD issues: the class check never reports success under
+  FreeRTOS (wrapped at run time), and the descriptor helpers only read the low byte of
+  `wTotalLength` (descriptors are parsed locally instead).
 - **Save games and settings live in RAM** and are lost on reset or power off.
 
 ---

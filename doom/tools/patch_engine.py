@@ -69,6 +69,12 @@ PATCHES = {
         ("int key_nextweapon = 0;\n",
          "#ifdef RA8_DOOM\nint key_nextweapon = ']';\n#else\nint key_nextweapon = 0;\n#endif\n"),
     ],
+    # 6. Sound is enabled (FEATURE_SOUND) with the RA8 USB audio module in
+    #    src/port/i_sound_ra8.c, so SDL_mixer must not be included.
+    "i_sound.c": [(
+        "#if defined(FEATURE_SOUND) && !defined(__DJGPP__)\n#include <SDL_mixer.h>\n#endif\n",
+        "#if defined(FEATURE_SOUND) && !defined(__DJGPP__) && !defined(RA8_DOOM)\n#include <SDL_mixer.h>\n#endif\n",
+    )],
 }
 
 failed = False

@@ -3,7 +3,8 @@
  *
  * Boot sequence:
  *   1. Start the RTT console and the display (boot screen).
- *   2. Start the USB host task for the PS5 / PS4 controller.
+ *   2. Start the USB host tasks: PS5 / PS4 controller (USBHS) and USB
+ *      headphones (USBFS).
  *   3. Copy the IWAD from OSPI flash into SDRAM.
  *   4. Run the Doom engine (doomgeneric) forever.
  */
@@ -81,6 +82,7 @@ void new_thread0_entry (void * pvParameters)
     ra8_video_boot_message("RA8P1 DOOM", "LOADING...");
 
     usb_gamepad_task_start();
+    usb_audio_task_start();
 
     uint8_t * p_wad = NULL;
     size_t    size  = wad_loader_load(&p_wad);

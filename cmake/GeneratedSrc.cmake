@@ -105,6 +105,7 @@ target_include_directories(${PROJECT_NAME}.elf
     ${CMAKE_CURRENT_SOURCE_DIR}/ra/fsp/inc/api
     ${CMAKE_CURRENT_SOURCE_DIR}/ra/fsp/inc/instances
     ${CMAKE_CURRENT_SOURCE_DIR}/ra/fsp/src/r_usb_basic/src/driver/inc
+    ${CMAKE_CURRENT_SOURCE_DIR}/ra/fsp/src/r_usb_haud/src/inc
     ${CMAKE_CURRENT_SOURCE_DIR}/ra/fsp/src/rm_freertos_port
     ${CMAKE_CURRENT_SOURCE_DIR}/ra_cfg/aws
     ${CMAKE_CURRENT_SOURCE_DIR}/ra_cfg/fsp_cfg

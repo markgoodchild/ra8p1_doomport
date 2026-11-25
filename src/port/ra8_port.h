@@ -4,6 +4,7 @@
  * Hardware: EK-RA8P1 (R7KA8P1KF, Cortex-M85 @ 1 GHz)
  *   - Display : RTKLCDPAR1S00001BE 7" 1024x600 parallel RGB panel (GLCDC, CLUT8)
  *   - Input   : Sony DualSense (PS5) / DualShock 4 on the USB high-speed port
+ *   - Audio   : USB audio class headphones / dongle on the USB full-speed port
  *   - Storage : IWAD in the external octal flash (OSPI0 CS1, 0x90000000),
  *               copied to SDRAM at boot
  */
@@ -85,6 +86,26 @@ void usb_gamepad_task_start(void);
 
 /* Thread safe snapshot of the current controller state. */
 void usb_gamepad_get_state(pad_state_t * p_state);
+
+/* True once the game pad task has opened the USBHS host instance. */
+bool usb_gamepad_host_ready(void);
+
+/* ------------------------------------------------------------------------- */
+/* Audio: USB headphones on the full-speed port, fed by the Doom SFX mixer    */
+/* ------------------------------------------------------------------------- */
+
+/* USB host audio task: enumerates the headphones and streams the mixer. */
+void usb_audio_task_start(void);
+
+/* True while audio is being streamed to a USB audio device. */
+bool usb_audio_is_streaming(void);
+
+/* Mixer (i_sound_ra8.c): set the output sample rate before rendering. */
+void audio_mixer_set_output_rate(uint32_t rate);
+
+/* Mixer: render `frames` interleaved stereo 16-bit samples. Called from the
+ * USB audio task; safe against concurrent Doom sound calls. */
+void audio_mixer_render(int16_t * p_stereo, uint32_t frames);
 
 /* ------------------------------------------------------------------------- */
 /* Boot services                                                              */

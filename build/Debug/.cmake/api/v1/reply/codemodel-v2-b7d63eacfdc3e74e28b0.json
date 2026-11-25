@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "generate_sbd_ra8p1_doom::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-generate_sbd_ra8p1_doom-Debug-8c1cde4f4d9dde6a26d8.json",
+					"jsonFile" : "target-generate_sbd_ra8p1_doom-Debug-177fc579046f18310fe5.json",
 					"name" : "generate_sbd_ra8p1_doom",
 					"projectIndex" : 0
 				},
@@ -58,7 +58,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "ra8p1_doom.elf::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-ra8p1_doom.elf-Debug-5b0e2c58b4a8b493274a.json",
+					"jsonFile" : "target-ra8p1_doom.elf-Debug-6d566e8fd02038f15fee.json",
 					"name" : "ra8p1_doom.elf",
 					"projectIndex" : 0
 				}

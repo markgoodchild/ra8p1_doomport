@@ -31,7 +31,7 @@
             #if (RA_NOT_DEFINED != RA_NOT_DEFINED)
             #define USB_CFG_HPRN_USE
             #endif
-            #if (RA_NOT_DEFINED != RA_NOT_DEFINED)
+            #if (1 != RA_NOT_DEFINED)
             #define USB_CFG_HAUD_USE
             #endif
             #if (RA_NOT_DEFINED != RA_NOT_DEFINED)
@@ -113,7 +113,7 @@
             #endif
 
             #define USB_CFG_MODE (USB_CFG_PERI_MODE | USB_CFG_HOST_MODE)
-            #define USB_CFG_MULTIPORT (USB_CFG_DISABLE)
+            #define USB_CFG_MULTIPORT (USB_CFG_ENABLE)
             #define USB_CFG_PARAM_CHECKING_ENABLE (BSP_CFG_PARAM_CHECKING_ENABLE)
             #define USB_CFG_CLKSEL (USB_CFG_24MHZ)
             #define USB_CFG_BUSWAIT (USB_CFG_BUSWAIT_7)

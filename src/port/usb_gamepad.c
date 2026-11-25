@@ -56,6 +56,8 @@ static pad_type_t     g_pad_type;
 
 static pad_state_t    g_state;         /* Protected by a critical section */
 
+static volatile bool  g_host_ready;    /* R_USB_Open() on USBHS has returned */
+
 /* FSP USB event callback (RTOS mode). The event structure lives in a ring
  * owned by the driver, so it is copied into our own queue. */
 void usb_host_callback (usb_event_info_t * p_event_info, usb_hdl_t cur_task, usb_onoff_t usb_state)
@@ -78,6 +80,11 @@ void usb_host_callback (usb_event_info_t * p_event_info, usb_hdl_t cur_task, usb
     {
         (void) xQueueSend(g_usb_queue, p_event_info, 0);
     }
+}
+
+bool usb_gamepad_host_ready (void)
+{
+    return g_host_ready;
 }
 
 void usb_gamepad_get_state (pad_state_t * p_state)
@@ -268,6 +275,9 @@ static void usb_task (void * pvParameters)
     FSP_PARAMETER_NOT_USED(pvParameters);
 
     fsp_err_t err = R_USB_Open(&g_basic0_ctrl, &g_basic0_cfg);
+
+    g_host_ready = true;               /* The audio task may now open USBFS */
+
     if (FSP_SUCCESS != err)
     {
         printf("USB: R_USB_Open failed (%d)\n", (int) err);
